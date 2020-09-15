@@ -243,8 +243,29 @@
 
 ### 第4课. 栈、队列、优先队列、双端队列：
 1. 栈和队列的实现与特性：
-  • Stack:先入后出;添加、删除皆为 O(1)
-  • Queue:先入先出;添加、删除皆为 O(1)
-  
+  * Stack:先入后出;添加、删除皆为 O(1)
+  * Queue:先入先出;添加、删除皆为 O(1)
+  * Deque:简单理解:- double ended queue(两端可以进出Queue),插入和删除都是 O(1) 操作.
+  * python 的 deque： collections包
 
-        
+* 参考链接
+  >Java 的 PriorityQueue 文档:https://docs.oracle.com/javase/10/docs/api/java/util/PriorityQueue.html
+  >Java 的 Stack 源码:http://developer.classpath.org/doc/java/util/Stack-source.html
+  >Java 的 Queue :(http://fuseyism.com/classpath/doc/java/util/Queue-source.html)
+  >Python 的 heapq:https://docs.python.org/2/library/heapq.html
+  >高性能的 container 库:https://docs.python.org/2/library/collections.html
+
+2.2. 实战题目解析：有效的括号、最小栈等问题
+  * **用栈解决问题**：有效的括号、柱状图中最大的矩形
+  * **双栈解决问题**，减少使用空间：最小栈
+  * 预习题目
+  有效的括号（亚马逊、JPMorgan 在半年内面试常考）
+  最小栈（亚马逊在半年内面试常考）
+  * 实战题目
+  柱状图中最大的矩形（亚马逊、微软、字节跳动在半年内面试中考过）
+  滑动窗口最大值（亚马逊在半年内面试常考）
+  * 课后作业
+  用 add first 或 add last 这套新的 API 改写 Deque 的代码
+  分析 Queue 和 Priority Queue 的源码
+  设计循环双端队列（Facebook 在 1 年内面试中考过）
+  接雨水（亚马逊、字节跳动、高盛集团、Facebook 在半年内面试常考）
