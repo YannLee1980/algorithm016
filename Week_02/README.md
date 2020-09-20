@@ -81,10 +81,10 @@
 5. 图的实现和特性:
    * 广度优先：
 
-          # 代码模版：
+          # 代码模版：（用队列）
           def bfs(grid, start):
             queue = []
-            visited = set()
+            visited = set()  ## 注意：要用集合，用了列表会重复遍历
             queue.append(start)
             visited.add(start)
             while queue:
@@ -95,7 +95,61 @@
                 if node not in visited:
                   queue.append(node)
                   visited.add(node)
+
+          # 优化(分层显示)-例子：
+          # Definition for a Node.
+          class Node:
+              def __init__(self, val=None, children=None):
+                  self.val = val
+                  self.children = children
+          """
+          import collections
+          class Solution:
+              def levelOrder(self, root: 'Node') -> List[List[int]]:
+                  if root is None:
+                      return []
+                  
+                  result = []
+                  deque = collections.deque([root])
+
+                  while deque:
+                      level = []
+                      for _ in range(len(deque)):
+                          node = deque.popleft()
+                          level.append(node.val)
+                          deque.extend(node.children)
+                      result.append(level)
+
+                  return result
+
+
+
    * 深度优先：
+
+          # 代码模版：（用栈）
+          def bfs(grid, start):
+            stack = []
+            visited = set()  ## 注意：要用集合，用了列表会重复遍历
+            queue.append(start)
+            visited.add(start)
+            while queue:
+              node = queue.pop()
+              process(node)
+              nodes = generate_related_nodes(node)
+              for node in nodes:
+                if node not in visited:
+                  queue.append(node)
+                  visited.add(node)
+                
+            # 代码模版：（递归）
+            visited = set()
+            def dfs(node, visited):
+              if node in visited:
+                return
+              visited.add(node)
+              for next_node in node.children():
+                dfs(next_node, visited)
+   * python heaqp（堆）的使用：小顶堆，可以用l = [], 初始化：`heap = []  heappush(heap, 1)`
    * 参考链接
       >连通图个数： https://leetcode-cn.com/problems/number-of-islands/
       >拓扑排序（Topological Sorting）： https://zhuanlan.zhihu.com/p/34871092
