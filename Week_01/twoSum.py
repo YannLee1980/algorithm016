@@ -16,14 +16,14 @@
 
 # 暴力法：
 class Solution:
-    def twoSum(self, nums: list, target: int) -> list:
+    def (self, nums: list, target: int) -> list:
         for i in range(len(nums) - 1):
             for j in range(i + 1, len(nums)):
                 if nums[i] + nums[j] == target:
                     return [i , j]
 
 s = Solution()
-print(s.twoSum([21,7,11,15], 36))
+print(s.([21,7,11,15], 36))
 # 输出： [0, 3]
 
 # 由于还没认真学习哈希表，以后添加使用哈希表的方法！
