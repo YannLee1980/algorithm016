@@ -163,7 +163,7 @@
   * Rabin-Karp
   * KMP
   >参考链接
-  Boyer-Moore 算法: https://www.ruanyifeng.com/blog/2013/05/boyer-moore_string_search_algorithm.html
+  Boyer-Moore 算法: https://www.ruanyifeng.com/blog/2013/05/boyer-moore_string_search_algorithm.
   Sunday 算法: https://blog.csdn.net/u012505432/article/details/52210975
   字符串匹配暴力法代码示例: https://shimo.im/docs/8G0aJqNL86wWrPUE
   Rabin-Karp 代码示例: https://shimo.im/docs/1wnsM7eaZ6Ab9j9M
@@ -202,3 +202,44 @@
 
 #### **需要理解的地方：**
 * 最长公共前缀(https://leetcode-cn.com/problems/longest-common-prefix/description/),如何用Trie实现
+* 300. 最长上升子序列https://leetcode-cn.com/problems/longest-increasing-subsequence/:题解：https://leetcode.com/problems/longest-increasing-subsequence/discuss/74824/JavaPython-Binary-search-O(nlogn)-time-with-explanation
+        def lengthOfLIS(self, nums):
+            tails = [0] * len(nums)
+            size = 0
+            for x in nums:
+                i, j = 0, size
+                while i != j:
+                    m = (i + j) / 2
+                    if tails[m] < x:
+                        i = m + 1
+                    else:
+                        j = m
+                tails[i] = x
+                size = max(i + 1, size)
+            return size
+
+#### **疑问：**
+* 如何改进下面的超时题解： 44. 通配符匹配： https://leetcode-cn.com/problems/wildcard-matching/
+
+        class Solution:
+            def isMatch(self, s: str, p: str) -> bool:
+                memo = {}
+                if not s and not p: return True
+                
+                def dp(i, j):
+                    if (i, j) in memo: return memo[(i, j)]
+                    if j == len(p): return i == len(s)
+                    
+                    first = len(s) > i and p[j] in [s[i], '?']
+                    
+                    if len(p) > j and p[j] == '*':
+                        ans = False
+                        for k in range(i, len(s)+1):
+                            ans = ans or dp(k, j+1)
+                    else:
+                        ans = first and dp(i+1, j+1)
+                    memo[(i, j)] = ans
+                    
+                    return ans
+                
+                return dp(0, 0)
